@@ -1,0 +1,37 @@
+﻿<%- include("../partials/header", { title: "Accounts" }) %>
+
+<section class="page-header">
+  <h2>Accounts</h2>
+  <a class="btn-secondary" href="/accounts/new">Open Account</a>
+</section>
+
+<section class="card">
+  <% if (!accounts.length) { %>
+  <p>No accounts found. Create an account to start transactions.</p>
+  <% } else { %>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Account Type</th>
+          <th>Balance</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% accounts.forEach((account) => { %>
+        <tr>
+          <td><%= account.customerId ? account.customerId.name : "Unknown" %></td>
+          <td><%= account.accountType %></td>
+          <td>Rs <%= Number(account.balance).toFixed(2) %></td>
+          <td><a href="/accounts/<%= account._id %>">View</a></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <% } %>
+</section>
+
+<%- include("../partials/footer") %>

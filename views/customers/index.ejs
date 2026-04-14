@@ -1,0 +1,37 @@
+﻿<%- include("../partials/header", { title: "Customers" }) %>
+
+<section class="page-header">
+  <h2>Customers</h2>
+  <a class="btn-secondary" href="/customers/new">Add Customer</a>
+</section>
+
+<section class="card">
+  <% if (!customers.length) { %>
+  <p>No customers found. Start by adding your first customer.</p>
+  <% } else { %>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% customers.forEach((customer) => { %>
+        <tr>
+          <td><%= customer.name %></td>
+          <td><%= customer.email %></td>
+          <td><%= customer.phone %></td>
+          <td><%= new Date(customer.createdAt).toLocaleDateString() %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <% } %>
+</section>
+
+<%- include("../partials/footer") %>

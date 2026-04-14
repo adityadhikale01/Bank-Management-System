@@ -1,0 +1,22 @@
+﻿<%- include("partials/header", { title: "Login" }) %>
+
+<section class="card form-card">
+  <h2>Login</h2>
+  <p class="subtitle">Access your banking dashboard</p>
+
+  <form action="/login" method="POST" class="form-grid">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required />
+
+    <button type="submit">Login</button>
+  </form>
+
+  <p class="helper-text">
+    Need an account? <a href="/register">Register here</a>.
+  </p>
+</section>
+
+<%- include("partials/footer") %>

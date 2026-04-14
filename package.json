@@ -1,19 +1,31 @@
-{
+﻿{
   "name": "bank-management-system",
   "version": "1.0.0",
-  "description": "Bank Management System With Express.js And Ejs Templateing",
-  "main": "app.js ",
+  "description": "Mini banking system built with Node.js, Express, MongoDB, and EJS.",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
-  "author": "Aditya",
+  "keywords": [
+    "banking",
+    "express",
+    "mongodb",
+    "passport"
+  ],
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/adityadhikale01/Bank-Management-System.git"
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^16.6.1",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.19.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
   },
-  "bugs": {
-    "url": "https://github.com/adityadhikale01/Bank-Management-System/issues"
-  },
-  "homepage": "https://github.com/adityadhikale01/Bank-Management-System#readme"
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
 }

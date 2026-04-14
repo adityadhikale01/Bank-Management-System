@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || "Bank Management System" %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav-row">
+        <a class="brand" href="<%= currentUser ? '/dashboard' : '/login' %>">
+          Mini Bank
+        </a>
+
+        <nav class="nav-links">
+          <% if (currentUser) { %>
+          <a href="/dashboard">Dashboard</a>
+          <a href="/customers">Customers</a>
+          <a href="/accounts">Accounts</a>
+          <form action="/logout" method="POST" class="inline-form">
+            <button type="submit" class="link-button">Logout</button>
+          </form>
+          <% } else { %>
+          <a href="/login">Login</a>
+          <a href="/register">Register</a>
+          <% } %>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <% if (success && success.length) { %>
+      <div class="flash flash-success"><%= success[0] %></div>
+      <% } %>
+
+      <% if (error && error.length) { %>
+      <div class="flash flash-error"><%= error[0] %></div>
+      <% } %>

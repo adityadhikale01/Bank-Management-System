@@ -1,0 +1,36 @@
+﻿<%- include("../partials/header", { title: "Open Account" }) %>
+
+<section class="card form-card">
+  <h2>Open New Account</h2>
+  <p class="subtitle">Select a customer and account details.</p>
+
+  <% if (!customers.length) { %>
+  <p>
+    No customers available. <a href="/customers/new">Create a customer first</a>.
+  </p>
+  <% } else { %>
+  <form action="/accounts" method="POST" class="form-grid">
+    <label for="customerId">Customer</label>
+    <select id="customerId" name="customerId" required>
+      <option value="">Select Customer</option>
+      <% customers.forEach((customer) => { %>
+      <option value="<%= customer._id %>"><%= customer.name %> - <%= customer.email %></option>
+      <% }) %>
+    </select>
+
+    <label for="accountType">Account Type</label>
+    <select id="accountType" name="accountType" required>
+      <option value="">Select Type</option>
+      <option value="Savings">Savings</option>
+      <option value="Current">Current</option>
+    </select>
+
+    <label for="initialBalance">Initial Balance (optional)</label>
+    <input type="number" step="0.01" min="0" id="initialBalance" name="initialBalance" />
+
+    <button type="submit">Open Account</button>
+  </form>
+  <% } %>
+</section>
+
+<%- include("../partials/footer") %>

@@ -1,0 +1,70 @@
+﻿<%- include("../partials/header", { title: "Account Details" }) %>
+
+<section class="page-header">
+  <h2>Account Details</h2>
+  <a class="btn-secondary" href="/accounts">Back to Accounts</a>
+</section>
+
+<section class="card details-grid">
+  <div>
+    <p><strong>Customer:</strong> <%= account.customerId ? account.customerId.name : "Unknown" %></p>
+    <p><strong>Email:</strong> <%= account.customerId ? account.customerId.email : "N/A" %></p>
+  </div>
+  <div>
+    <p><strong>Account Type:</strong> <%= account.accountType %></p>
+    <p><strong>Current Balance:</strong> Rs <%= Number(account.balance).toFixed(2) %></p>
+  </div>
+</section>
+
+<section class="card form-card">
+  <h3>Perform Transaction</h3>
+  <form action="/accounts/<%= account._id %>/transactions" method="POST" class="form-grid">
+    <label for="type">Transaction Type</label>
+    <select id="type" name="type" required>
+      <option value="">Select Type</option>
+      <option value="deposit">Deposit</option>
+      <option value="withdraw">Withdraw</option>
+    </select>
+
+    <label for="amount">Amount</label>
+    <input type="number" step="0.01" min="0.01" id="amount" name="amount" required />
+
+    <button type="submit">Submit Transaction</button>
+  </form>
+</section>
+
+<section class="card">
+  <h3>Transaction History</h3>
+  <% if (!transactions.length) { %>
+  <p>No transactions yet.</p>
+  <% } else { %>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% transactions.forEach((transaction) => { %>
+        <tr>
+          <td>
+            <span
+              class="pill <%= transaction.type === 'credit' ? 'pill-credit' : 'pill-debit' %>"
+            >
+              <%= transaction.type %>
+            </span>
+          </td>
+          <td>Rs <%= Number(transaction.amount).toFixed(2) %></td>
+          <td><%= new Date(transaction.date).toLocaleString() %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <% } %>
+</section>
+
+<%- include("../partials/footer") %>

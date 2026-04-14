@@ -1,0 +1,36 @@
+﻿<%- include("partials/header", { title: "Register" }) %>
+
+<section class="card form-card">
+  <h2>Create Account</h2>
+  <p class="subtitle">Register an admin login to manage the bank</p>
+
+  <form action="/register" method="POST" class="form-grid">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      minlength="3"
+      maxlength="30"
+      required
+    />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" minlength="6" required />
+
+    <label for="confirmPassword">Confirm Password</label>
+    <input
+      type="password"
+      id="confirmPassword"
+      name="confirmPassword"
+      minlength="6"
+      required
+    />
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p class="helper-text">Already registered? <a href="/login">Login here</a>.</p>
+</section>
+
+<%- include("partials/footer") %>

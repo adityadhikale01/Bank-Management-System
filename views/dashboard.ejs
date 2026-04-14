@@ -1,0 +1,76 @@
+﻿<%- include("partials/header", { title: "Dashboard" }) %>
+
+<section class="page-header">
+  <h2>Dashboard</h2>
+  <p>Welcome, <strong><%= currentUser.username %></strong>.</p>
+</section>
+
+<section class="stats-grid">
+  <article class="card stat-card">
+    <h3>Total Customers</h3>
+    <p><%= stats.customerCount %></p>
+  </article>
+
+  <article class="card stat-card">
+    <h3>Total Accounts</h3>
+    <p><%= stats.accountCount %></p>
+  </article>
+
+  <article class="card stat-card">
+    <h3>Total Transactions</h3>
+    <p><%= stats.transactionCount %></p>
+  </article>
+
+  <article class="card stat-card">
+    <h3>Total Balance</h3>
+    <p>Rs <%= Number(stats.totalBalance).toFixed(2) %></p>
+  </article>
+</section>
+
+<section class="card">
+  <h3>Quick Actions</h3>
+  <div class="actions">
+    <a class="btn-secondary" href="/customers/new">Add Customer</a>
+    <a class="btn-secondary" href="/accounts/new">Open Account</a>
+    <a class="btn-secondary" href="/accounts">View Accounts</a>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Recent Transactions</h3>
+
+  <% if (!recentTransactions.length) { %>
+  <p>No transactions yet.</p>
+  <% } else { %>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% recentTransactions.forEach((tx) => { %>
+        <tr>
+          <td>
+            <%= tx.accountId && tx.accountId.customerId ? tx.accountId.customerId.name : "Unknown" %>
+          </td>
+          <td>
+            <span class="pill <%= tx.type === 'credit' ? 'pill-credit' : 'pill-debit' %>">
+              <%= tx.type %>
+            </span>
+          </td>
+          <td>Rs <%= Number(tx.amount).toFixed(2) %></td>
+          <td><%= new Date(tx.date).toLocaleString() %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <% } %>
+</section>
+
+<%- include("partials/footer") %>
