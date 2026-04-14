@@ -1,0 +1,19 @@
+{
+  "name": "bank-management-system",
+  "version": "1.0.0",
+  "description": "Bank Management System With Express.js And Ejs Templateing",
+  "main": "app.js ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aditya",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adityadhikale01/Bank-Management-System.git"
+  },
+  "bugs": {
+    "url": "https://github.com/adityadhikale01/Bank-Management-System/issues"
+  },
+  "homepage": "https://github.com/adityadhikale01/Bank-Management-System#readme"
+}
